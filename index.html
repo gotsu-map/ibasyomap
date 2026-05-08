@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>居場所の繋がりマップ｜行き先フローチャート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+    background: #fffdf4;
+    color: #333;
+    min-height: 100vh;
+  }
+
+  header {
+    background: #fffdf4;
+    border-bottom: 1px solid #f0e8c8;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .site-title {
+    font-size: 14px;
+    color: #888;
+    font-weight: 400;
+  }
+  .nav-link {
+    font-size: 13px;
+    color: #5a9a3a;
+    text-decoration: none;
+    padding: 4px 12px;
+    border: 1px solid #a8da78;
+    border-radius: 999px;
+    margin-left: auto;
+    transition: background 0.15s;
+  }
+  .nav-link:hover { background: #eaf7e0; }
+
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+
+  .top-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .chart-title {
+    background: #fff9c4;
+    border: 2px dashed #f5c842;
+    border-radius: 14px;
+    padding: 8px 18px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .chart-title span {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    display: block;
+  }
+  .mood-q {
+    background: #ffebf5;
+    border: 2px solid #f5a7cc;
+    border-radius: 999px;
+    padding: 8px 22px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #d0538a;
+  }
+  .lets-go {
+    font-size: 20px;
+    font-weight: 700;
+    color: #a8d870;
+    font-style: italic;
+    margin-left: auto;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) {
+    .two-col { grid-template-columns: 1fr; }
+    .lets-go { margin-left: 0; }
+  }
+
+  .branch { display: flex; flex-direction: column; gap: 10px; }
+
+  .branch-header {
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .branch-header.tired { background: #d6edcc; color: #3a7a22; }
+  .branch-header.active { background: #c8e6fa; color: #1a5fa0; }
+
+  .sub-q {
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    padding: 4px 0;
+  }
+  .sub-q.pink { color: #e0609a; }
+  .sub-q.blue { color: #3a90d0; }
+
+  .arrow {
+    text-align: center;
+    font-size: 20px;
+    color: #bbb;
+    line-height: 1;
+    margin: -4px 0;
+  }
+
+  .place-card {
+    border-radius: 14px;
+    padding: 12px 16px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+  .place-card:hover {
+    transform: scale(1.025);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  }
+  .place-card.green  { background: #eaf7e0; border-color: #a8da78; }
+  .place-card.pink   { background: #fde8f2; border-color: #f5a7cc; }
+  .place-card.blue   { background: #daeeff; border-color: #7ec8f5; }
+  .place-card.red    { background: #fde8e8; border-color: #f5a0a0; }
+  .place-card.yellow { background: #fffbe0; border-color: #f5dd70; }
+
+  .bubble {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .bubble.green  { background: #c8eea8; color: #2e6a10; }
+  .bubble.pink   { background: #f9c8e2; color: #a03070; }
+  .bubble.blue   { background: #b8ddf8; color: #1255a0; }
+  .bubble.red    { background: #f9c0c0; color: #a03030; }
+  .bubble.yellow { background: #f8f0a0; color: #8a7010; }
+
+  .place-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .place-name.green  { color: #2e8010; }
+  .place-name.pink   { color: #c03878; }
+  .place-name.blue   { color: #1255a0; }
+  .place-name.red    { color: #a03030; }
+  .place-name.yellow { color: #8a7010; }
+
+  .place-sub {
+    font-size: 12px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .other-box {
+    border: 2px dashed #ccc;
+    border-radius: 14px;
+    padding: 12px 14px;
+    background: #fafafa;
+  }
+  .other-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    margin-bottom: 8px;
+  }
+  .other-card {
+    border-radius: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    margin-bottom: 6px;
+  }
+  .other-card:last-child { margin-bottom: 0; }
+  .other-card:hover { opacity: 0.8; }
+  .other-card.orange { background: #fff4e8; border: 1.5px solid #f5c090; }
+  .other-card.sora   { background: #e8f4ff; border: 1.5px solid #90c8f5; }
+  .other-card-name { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .other-card-name.orange { color: #c06020; }
+  .other-card-name.sora   { color: #2060a0; }
+  .other-card-sub { font-size: 12px; color: #888; }
+
+  /* Modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: white;
+    border-radius: 20px;
+    padding: 24px 28px;
+    max-width: 380px;
+    width: 100%;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #aaa;
+    background: none;
+    border: none;
+    line-height: 1;
+    z-index: 10;
+  }
+  .modal-close:hover { color: #666; }
+  .modal-color-bar {
+    height: 6px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .modal-name {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .modal-tag {
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 999px;
+    padding: 3px 12px;
+    margin-bottom: 12px;
+  }
+  .modal-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .modal-places-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #888;
+    margin-bottom: 8px;
+  }
+  .modal-box { max-width: 520px; padding: 0; overflow: hidden; }
+  .modal-header { padding: 20px 24px 0; position: relative; }
+  .modal-places { display: flex; flex-direction: column; gap: 0; }
+
+  .place-card-rich {
+    border-top: 1px solid #f0f0f0;
+    padding: 16px 24px;
+  }
+  .place-card-rich:first-child { border-top: none; }
+  .place-card-photo {
+    width: 100%; height: 180px; object-fit: cover;
+    border-radius: 10px; margin-bottom: 10px;
+    background: #eee;
+    display: block;
+  }
+  .place-card-photo-placeholder {
+    width: 100%; height: 120px;
+    border-radius: 10px; margin-bottom: 10px;
+    background: #f3f3f3;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: #ccc;
+  }
+  .place-card-top { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+  .place-card-badge {
+    font-size: 11px; padding: 2px 10px; border-radius: 999px;
+    font-weight: 600; white-space: nowrap; flex-shrink: 0;
+    border: 1px solid currentColor;
+  }
+  .place-card-title {
+    font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px;
+  }
+  .place-card-subtitle {
+    font-size: 13px; font-weight: 600; color: #555; margin-bottom: 6px;
+  }
+  .place-card-desc {
+    font-size: 13px; color: #666; line-height: 1.7; margin-bottom: 8px;
+  }
+  .place-card-info { display: flex; flex-direction: column; gap: 3px; margin-bottom: 8px; }
+  .place-card-info-row {
+    display: flex; gap: 6px; font-size: 12px; color: #555;
+  }
+  .place-card-info-label { color: #aaa; min-width: 44px; flex-shrink: 0; }
+  .place-card-price-list { display: flex; flex-direction: column; gap: 3px; margin-bottom: 8px; }
+  .place-card-price-row {
+    display: flex; justify-content: space-between;
+    font-size: 13px; color: #444; padding: 4px 0;
+    border-bottom: 0.5px solid #f0f0f0;
+  }
+  .place-card-price-row:last-child { border-bottom: none; }
+  .place-card-price-amount { font-weight: 600; }
+  .place-card-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 13px; font-weight: 600; text-decoration: none;
+    padding: 6px 14px; border-radius: 999px; border: 1.5px solid;
+    transition: opacity 0.15s;
+  }
+  .place-card-link:hover { opacity: 0.8; }
+
+  .modal-place-name { font-weight: 600; color: #333; margin-bottom: 2px; }
+  .modal-place-link {
+    display: inline-block; font-weight: 600;
+    text-decoration: none; margin-bottom: 2px;
+    border-bottom: 1px solid currentColor;
+    opacity: 0.85; transition: opacity 0.15s;
+  }
+  .modal-place-link:hover { opacity: 1; }
+  .link-icon { font-size: 11px; }
+  .modal-place-detail { font-size: 12px; color: #888; }
+  .modal-btn {
+    margin: 0 24px;
+    margin-top: 16px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    color: white;
+    transition: opacity 0.15s;
+  }
+  .modal-btn:hover { opacity: 0.85; }
+
+  .search-wrap {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .search-input {
+    width: 100%;
+    padding: 10px 40px 10px 16px;
+    border-radius: 999px;
+    border: 1.5px solid #d0e8b8;
+    background: white;
+    font-size: 14px;
+    font-family: inherit;
+    color: #333;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .search-input:focus {
+    border-color: #a8da78;
+    box-shadow: 0 0 0 3px rgba(168,218,120,0.2);
+  }
+  .search-icon {
+    position: absolute; right: 14px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px; pointer-events: none; color: #aaa;
+  }
+  .search-results {
+    display: none;
+    background: white;
+    border: 1.5px solid #d0e8b8;
+    border-radius: 14px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .search-results.show { display: block; }
+  .search-result-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px; cursor: pointer;
+    border-bottom: 0.5px solid #f0f0f0;
+    transition: background 0.12s;
+  }
+  .search-result-item:last-child { border-bottom: none; }
+  .search-result-item:hover { background: #f6fbf0; }
+  .search-result-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .search-result-name { font-size: 14px; font-weight: 600; color: #333; }
+  .search-result-cat { font-size: 12px; color: #888; margin-left: auto; }
+  .search-no-result { padding: 14px 16px; font-size: 13px; color: #aaa; text-align: center; }
+
+  .filter-row {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;
+  }
+  .filter-btn {
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 14px; border-radius: 999px; font-size: 13px;
+    font-family: inherit; cursor: pointer;
+    border: 1.5px solid #ddd; background: white; color: #666;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: #bbb; background: #f8f8f8; }
+  .filter-btn.active { color: white; border-color: transparent; }
+  .filter-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: #bbb;
+    border-top: 1px solid #f0e8c8;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="site-title">居場所の繋がりマップ</span>
+</header>
+
+<main>
+  <div style="margin-bottom: 24px; border-radius: 16px; overflow: hidden;">
+    <img src="banner.png" alt="居場所つながりマップ〜ひとりじゃない、居場所の案内図〜" style="width: 100%; display: block;">
+  </div>
+
+  <div class="search-wrap">
+    <input class="search-input" type="text" id="search-input" placeholder="場所を検索... （例：mog、公園、農園）" oninput="onSearch()" autocomplete="off" />
+    <span class="search-icon">🔍</span>
+    <div class="search-results" id="search-results"></div>
+  </div>
+
+  <div class="top-header" style="margin-top: 2rem;">
+    <div class="chart-title">
+      あなたの直感で見つかる！
+      <span>「行き先フローチャート」</span>
+    </div>
+    <div class="mood-q">今の気分に近いのはどっち？</div>
+    <div class="lets-go">Let's go!</div>
+  </div>
+
+  <div class="two-col">
+    <!-- 左：疲れた -->
+    <div class="branch">
+      <div class="branch-header tired">少し疲れた、ゆっくりしたい</div>
+      <div class="sub-q pink">ひとりがいい？ or 誰かと同じ空間にいたい？</div>
+      <div class="arrow">↓</div>
+
+      <div class="place-card green" onclick="location.href='midori.html'" style="cursor:pointer;">
+        <div class="bubble green">まずは一人で静かに過ごしたい</div>
+        <div class="place-name green">『みどりの場所』</div>
+        <div class="place-sub">📍 公園・個別スペースのある場所</div>
+      </div>
+
+      <div class="place-card pink" onclick="location.href='pink.html'" style="cursor:pointer;">
+        <div class="bubble pink">誰かの気配を感じながらほっとしたい</div>
+        <div class="place-name pink">『ピンクの場所』</div>
+        <div class="place-sub">📍 子ども食堂・園の開放スペース</div>
+      </div>
+
+      <div class="other-box">
+        <div class="other-title">他にもこんな場所があるよ</div>
+        <div class="other-card orange" onclick="location.href='orange.html'" style="cursor:pointer;">
+          <div class="other-card-name orange">『オレンジの場所』</div>
+          <div class="other-card-sub">放課後の居場所・放課後等デイサービス（利用条件あり）</div>
+        </div>
+        <div class="other-card sora" onclick="location.href='sora.html'" style="cursor:pointer;">
+          <div class="other-card-name sora">『空色の場所』</div>
+          <div class="other-card-sub">智翠館高校アスライズコース、江津清和養護学校</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右：関わりたい -->
+    <div class="branch">
+      <div class="branch-header active">何かしたい、誰かと関わりたい</div>
+      <div class="sub-q blue">やってみたいことはある？</div>
+      <div class="arrow">↓</div>
+
+      <div class="place-card blue" onclick="location.href='ao.html'" style="cursor:pointer;">
+        <div class="bubble blue">勉強や将来のことが気になる</div>
+        <div class="place-name blue">『あおの場所』</div>
+        <div class="place-sub">📍 学習支援・フリースクール</div>
+      </div>
+
+      <div class="place-card red" onclick="location.href='aka.html'" style="cursor:pointer;">
+        <div class="bubble red">体を動かしたり体験したりしたい</div>
+        <div class="place-name red">『あかの場所』</div>
+        <div class="place-sub">📍 体験農園・ボランティア・多世代交流</div>
+      </div>
+
+      <div class="place-card yellow" onclick="location.href='kiiro.html'" style="cursor:pointer;">
+        <div class="bubble yellow">まずは誰かに話を聞いてほしい</div>
+        <div class="place-name yellow">『きいろの場所』</div>
+        <div class="place-sub">📍 教育相談センター・保護者をつなぐ会</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-color-bar" id="modal-color-bar"></div>
+      <div class="modal-name" id="modal-name"></div>
+      <span class="modal-tag" id="modal-tag"></span>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div style="font-size:13px;font-weight:700;color:#aaa;margin-bottom:12px;">この場所の例</div>
+    </div>
+    <div class="modal-places" id="modal-places"></div>
+    <div style="padding: 16px 24px;">
+      <button class="modal-btn" id="modal-btn" onclick="closeModal()">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 居場所の繋がりマップ｜江津市
+</footer>
+
+<script>
+const data = {
+  green: {
+    name: "みどりの場所",
+    color: "#2e8010", bar: "#a8da78", tagBg: "#eaf7e0", tagColor: "#2e6a10",
+    tag: "一人でゆっくり",
+    desc: "静かに過ごせる、一人の時間を大切にできる場所です。自分のペースで来て、自分のペースで帰れます。",
+    places: [
+      {
+        name: "菰沢公園",
+        badge: "自然・公園",
+        subtitle: "芝生広場・釣り・キャンプ・遊具",
+        desc: "菰沢池を中心に作られた自然豊かな公園。芝生広場やアスレチック遊具、バスケットコート、釣り場、オートキャンプ場まで揃っています。一人でゆっくり過ごすのにぴったりです。",
+        info: [
+          { label: "開催日", value: "常時開放" },
+          { label: "時間", value: "いつでも" },
+          { label: "費用", value: "無料（キャンプ場は別途）" },
+          { label: "住所", value: "島根県江津市浅利町242" }
+        ],
+        prices: [],
+        url: "https://gotsu-kanko.jp/52/kankou/1508",
+        photo: "https://lh3.googleusercontent.com/place-photos/AJRVUZMqLIFFjXQiUdM9lVS5BWg6UREfOcxvnYpGrBWx05QE2aFpOEt1nBKHi9pyRh9L4BHg52VVYuGDCynQLG5LOAtIfQmF8iKackTjX4LhWsRI6TVbiP9eTgL15xCv_iN304Xs0zFzbjAluQ=s800-w800-h600"
+      },
+      {
+        name: "図書館 静かな読書コーナー",
+        badge: "学び・静かな場所",
+        subtitle: "個別席・自由利用",
+        desc: "一人でゆっくり本を読んだり、静かに過ごせるスペースです。予約不要でいつでも利用できます。",
+        info: [
+          { label: "開催日", value: "月〜土" },
+          { label: "時間", value: "9:00〜18:00" },
+          { label: "費用", value: "無料" }
+        ],
+        prices: [],
+        url: null,
+        photo: null
+      },
+      {
+        name: "△△個別スペース",
+        badge: "憩いの場",
+        subtitle: "一人でほっとできる場所",
+        desc: "誰にも気を使わず、自分のペースで過ごせる個別スペースです。",
+        info: [
+          { label: "開催日", value: "月〜土" },
+          { label: "時間", value: "10:00〜17:00" },
+          { label: "費用", value: "無料" }
+        ],
+        prices: [],
+        url: null,
+        photo: null
+      }
+    ]
+  },
+  pink: {
+    name: "ピンクの場所",
+    color: "#c03878", bar: "#f5a7cc", tagBg: "#fde8f2", tagColor: "#a03070",
+    tag: "みんなでほっこり",
+    desc: "誰かと同じ空間でゆったり過ごせる場所。話してもいいし、ただいるだけでもOK。",
+    places: [
+      { name: "こども食堂 ほっこり", detail: "毎週木曜 17:00〜19:00・無料" },
+      { name: "□□園 開放スペース", detail: "平日 9:00〜16:00・子連れ歓迎" },
+      { name: "地域交流センター", detail: "土日も開いています" }
+    ]
+  },
+  ao: {
+    name: "あおの場所",
+    color: "#1255a0", bar: "#7ec8f5", tagBg: "#daeeff", tagColor: "#1a5fa0",
+    tag: "学び・将来",
+    desc: "勉強や進路、将来のことを一緒に考えてくれる場所。プロのサポートを受けながら自分のペースで学べます。",
+    places: [
+      { name: "学習支援センター", detail: "火・木・土 14:00〜18:00" },
+      { name: "フリースクール ひだまり", detail: "月〜金・事前登録制" },
+      { name: "進路相談室", detail: "予約制・無料" }
+    ]
+  },
+  aka: {
+    name: "あかの場所",
+    color: "#a03030", bar: "#f5a0a0", tagBg: "#fde8e8", tagColor: "#a03030",
+    tag: "体験・つながり",
+    desc: "体を動かしたり、実際に何かを体験したり。農業・ボランティア・多世代の人たちとの交流ができます。",
+    places: [
+      { name: "mog-mog farm", detail: "月〜土 9:00〜17:00・島根県江津市土居町", url: "https://www.jalan.net/kankou/spt_guide000000224801/activity/l000054A5A/" },
+      { name: "体験農園 みのり", detail: "毎週土曜 9:00〜12:00" },
+      { name: "多世代交流センター", detail: "ボランティア随時募集中" },
+      { name: "地域イベント広場", detail: "月1回・詳細はチラシで確認" }
+    ]
+  },
+  kiiro: {
+    name: "きいろの場所",
+    color: "#8a7010", bar: "#f5dd70", tagBg: "#fffbe0", tagColor: "#8a7010",
+    tag: "相談・つながる",
+    desc: "まず話を聞いてほしいときに。専門スタッフや保護者同士がつながれる場所です。",
+    places: [
+      { name: "教育相談センター", detail: "平日 9:00〜17:00・無料" },
+      { name: "保護者をつなぐ会", detail: "月2回・第1・3水曜" },
+      { name: "子ども相談窓口", detail: "電話・対面どちらでも" }
+    ]
+  },
+  orange: {
+    name: "オレンジの場所",
+    color: "#c06020", bar: "#f5c090", tagBg: "#fff4e8", tagColor: "#c06020",
+    tag: "放課後の居場所",
+    desc: "放課後の時間を安心して過ごせる場所。利用条件がある場合がありますのでお問い合わせください。",
+    places: [
+      { name: "放課後等デイサービス", detail: "利用条件あり・要相談" },
+      { name: "放課後 居場所クラブ", detail: "小学生対象・無料" }
+    ]
+  },
+  sora: {
+    name: "空色の場所",
+    color: "#2060a0", bar: "#90c8f5", tagBg: "#e8f4ff", tagColor: "#2060a0",
+    tag: "学校・専門支援",
+    desc: "特別な支援が受けられる学校や、専門的なコースがある場所です。見学・相談も随時受け付けています。",
+    places: [
+      { name: "智翠館高校 アスライズコース", detail: "入学相談随時" },
+      { name: "江津清和養護学校", detail: "見学・相談受付中" }
+    ]
+  }
+};
+
+function buildSearchIndex() {
+  const index = [];
+  Object.keys(data).forEach(key => {
+    const d = data[key];
+    d.places.forEach(p => {
+      index.push({ placeName: p.name || '', detail: p.detail || p.desc || '', catKey: key, catName: '『' + d.name + '』', color: d.color });
+    });
+  });
+  return index;
+}
+
+function onSearch() {
+  const q = document.getElementById('search-input').value.trim();
+  const resultsEl = document.getElementById('search-results');
+  if (!q) { resultsEl.classList.remove('show'); return; }
+  const pageMap = { green:'midori.html', pink:'pink.html', ao:'ao.html', aka:'aka.html', kiiro:'kiiro.html', orange:'orange.html', sora:'sora.html' };
+  const index = buildSearchIndex();
+  const matched = index.filter(item =>
+    item.placeName.includes(q) || item.detail.includes(q) || item.catName.includes(q)
+  );
+  if (matched.length === 0) {
+    resultsEl.innerHTML = '<div class="search-no-result">「' + q + '」に一致する場所が見つかりませんでした</div>';
+  } else {
+    resultsEl.innerHTML = matched.map(item =>
+      '<div class="search-result-item" onclick="location.href=\'' + (pageMap[item.catKey] || '#') + '\'">' +
+      '<div class="search-result-dot" style="background:' + item.color + '"></div>' +
+      '<div class="search-result-name">' + item.placeName + '</div>' +
+      '<div class="search-result-cat">' + item.catName + '</div>' +
+      '</div>'
+    ).join('');
+  }
+  resultsEl.classList.add('show');
+}
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.search-wrap')) {
+    document.getElementById('search-results').classList.remove('show');
+  }
+});
+
+function openModal(key) {
+  const d = data[key];
+  document.getElementById('modal-color-bar').style.background = d.bar;
+  const nameEl = document.getElementById('modal-name');
+  nameEl.textContent = '『' + d.name + '』';
+  nameEl.style.color = d.color;
+  const tag = document.getElementById('modal-tag');
+  tag.textContent = d.tag;
+  tag.style.background = d.tagBg;
+  tag.style.color = d.tagColor;
+  document.getElementById('modal-desc').textContent = d.desc;
+
+  const pl = document.getElementById('modal-places');
+  pl.innerHTML = d.places.map(p => {
+    const isRich = p.badge !== undefined;
+    if (isRich) {
+      const photoHtml = p.photo
+        ? '<img class="place-card-photo" src="' + p.photo + '" alt="' + p.name + '" onerror="this.style.display=\'none\'">'
+        : (p.url ? '' : '');
+      const infoHtml = p.info && p.info.length
+        ? '<div class="place-card-info">' + p.info.map(i =>
+            '<div class="place-card-info-row"><span class="place-card-info-label">' + i.label + '</span><span>' + i.value + '</span></div>'
+          ).join('') + '</div>' : '';
+      const priceHtml = p.prices && p.prices.length
+        ? '<div class="place-card-price-list">' + p.prices.map(pr =>
+            '<div class="place-card-price-row"><span>' + pr.label + '</span><span class="place-card-price-amount">' + pr.amount + '</span></div>'
+          ).join('') + '</div>' : '';
+      const linkHtml = p.url
+        ? '<a class="place-card-link" href="' + p.url + '" target="_blank" rel="noopener" style="color:' + d.color + ';border-color:' + d.bar + '">詳細を見る ↗</a>' : '';
+      return '<div class="place-card-rich">' +
+        photoHtml +
+        '<div class="place-card-top">' +
+        '<span class="place-card-badge" style="color:' + d.color + ';border-color:' + d.bar + ';background:' + d.tagBg + '">' + p.badge + '</span>' +
+        '</div>' +
+        '<div class="place-card-title">' + p.name + '</div>' +
+        (p.subtitle ? '<div class="place-card-subtitle">' + p.subtitle + '</div>' : '') +
+        (p.desc ? '<div class="place-card-desc">' + p.desc + '</div>' : '') +
+        infoHtml + priceHtml + linkHtml +
+        '</div>';
+    } else {
+      const nameHtml = p.url
+        ? '<a class="modal-place-link" href="' + p.url + '" target="_blank" rel="noopener" style="color:' + d.color + '">' + p.name + ' <span class="link-icon">↗</span></a>'
+        : '<div class="modal-place-name">' + p.name + '</div>';
+      return '<div class="place-card-rich">' +
+        '<div style="display:flex;align-items:flex-start;gap:8px">' +
+        '<div style="width:8px;height:8px;border-radius:50%;background:' + d.bar + ';margin-top:5px;flex-shrink:0"></div>' +
+        '<div>' + nameHtml + '<div class="modal-place-detail">' + p.detail + '</div></div>' +
+        '</div></div>';
+    }
+  }).join('');
+
+  document.getElementById('modal-btn').style.background = d.color;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+</script>
+</body>
+</html>
