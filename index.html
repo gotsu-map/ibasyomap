@@ -427,7 +427,7 @@
   </div>
 
   <div class="search-wrap">
-    <input class="search-input" type="text" id="search-input" placeholder="場所を検索... （例：mog、公園、農園）" oninput="onSearch()" autocomplete="off" />
+    <input class="search-input" type="text" id="search-input" placeholder="場所を検索... （例：公園、農園、食堂）" oninput="onSearch()" autocomplete="off" />
     <span class="search-icon">🔍</span>
     <div class="search-results" id="search-results"></div>
   </div>
@@ -530,49 +530,13 @@ const data = {
     tag: "一人でゆっくり",
     desc: "静かに過ごせる、一人の時間を大切にできる場所です。自分のペースで来て、自分のペースで帰れます。",
     places: [
-      {
-        name: "菰沢公園",
-        badge: "自然・公園",
-        subtitle: "芝生広場・釣り・キャンプ・遊具",
-        desc: "菰沢池を中心に作られた自然豊かな公園。芝生広場やアスレチック遊具、バスケットコート、釣り場、オートキャンプ場まで揃っています。一人でゆっくり過ごすのにぴったりです。",
-        info: [
-          { label: "開催日", value: "常時開放" },
-          { label: "時間", value: "いつでも" },
-          { label: "費用", value: "無料（キャンプ場は別途）" },
-          { label: "住所", value: "島根県江津市浅利町242" }
-        ],
-        prices: [],
-        url: "https://gotsu-kanko.jp/52/kankou/1508",
-        photo: "https://lh3.googleusercontent.com/place-photos/AJRVUZMqLIFFjXQiUdM9lVS5BWg6UREfOcxvnYpGrBWx05QE2aFpOEt1nBKHi9pyRh9L4BHg52VVYuGDCynQLG5LOAtIfQmF8iKackTjX4LhWsRI6TVbiP9eTgL15xCv_iN304Xs0zFzbjAluQ=s800-w800-h600"
-      },
-      {
-        name: "図書館 静かな読書コーナー",
-        badge: "学び・静かな場所",
-        subtitle: "個別席・自由利用",
-        desc: "一人でゆっくり本を読んだり、静かに過ごせるスペースです。予約不要でいつでも利用できます。",
-        info: [
-          { label: "開催日", value: "月〜土" },
-          { label: "時間", value: "9:00〜18:00" },
-          { label: "費用", value: "無料" }
-        ],
-        prices: [],
-        url: null,
-        photo: null
-      },
-      {
-        name: "△△個別スペース",
-        badge: "憩いの場",
-        subtitle: "一人でほっとできる場所",
-        desc: "誰にも気を使わず、自分のペースで過ごせる個別スペースです。",
-        info: [
-          { label: "開催日", value: "月〜土" },
-          { label: "時間", value: "10:00〜17:00" },
-          { label: "費用", value: "無料" }
-        ],
-        prices: [],
-        url: null,
-        photo: null
-      }
+      { name: "菰沢公園", badge: "自然・公園", subtitle: "芝生広場・釣り・キャンプ・遊具", desc: "菰沢池を中心に作られた自然豊かな公園。芝生広場やアスレチック遊具、バスケットコート、釣り場、オートキャンプ場まで揃っています。一人でゆっくり過ごすのにぴったりです。", info: [{ label: "開催日", value: "常時開放" }, { label: "時間", value: "いつでも" }, { label: "費用", value: "無料（キャンプ場は別途）" }, { label: "住所", value: "島根県江津市浅利町242" }], prices: [], url: "https://gotsu-kanko.jp/52/kankou/1508", photo: "https://lh3.googleusercontent.com/place-photos/AJRVUZMqLIFFjXQiUdM9lVS5BWg6UREfOcxvnYpGrBWx05QE2aFpOEt1nBKHi9pyRh9L4BHg52VVYuGDCynQLG5LOAtIfQmF8iKackTjX4LhWsRI6TVbiP9eTgL15xCv_iN304Xs0zFzbjAluQ=s800-w800-h600" },
+      { name: "図書館 静かな読書コーナー", detail: "個別席あり・予約不要" },
+      { name: "△△個別スペース", detail: "月〜土 10:00〜17:00" },
+      { name: "ときまち", detail: "掲載内容確認中" },
+      { name: "風のえんがわ", detail: "掲載内容確認中" },
+      { name: "NPO法人 こどもの居場所（浜田市）", detail: "掲載内容確認中" },
+      { name: "株式会社コガワ計画 Mランド益田校", detail: "掲載内容確認中" }
     ]
   },
   pink: {
@@ -583,7 +547,14 @@ const data = {
     places: [
       { name: "こども食堂 ほっこり", detail: "毎週木曜 17:00〜19:00・無料" },
       { name: "□□園 開放スペース", detail: "平日 9:00〜16:00・子連れ歓迎" },
-      { name: "地域交流センター", detail: "土日も開いています" }
+      { name: "地域交流センター", detail: "土日も開いています" },
+      { name: "こうとうキャンパス（あさりこども園）", detail: "掲載内容確認中" },
+      { name: "うさぎ山こども園", detail: "掲載内容確認中" },
+      { name: "里山子ども園わたぼうし", detail: "掲載内容確認中" },
+      { name: "さくら子ども園", detail: "掲載内容確認中" },
+      { name: "ときまち", detail: "掲載内容確認中" },
+      { name: "風のえんがわ", detail: "掲載内容確認中" },
+      { name: "NPO法人 こどもの居場所（浜田市）", detail: "掲載内容確認中" }
     ]
   },
   ao: {
@@ -594,7 +565,9 @@ const data = {
     places: [
       { name: "学習支援センター", detail: "火・木・土 14:00〜18:00" },
       { name: "フリースクール ひだまり", detail: "月〜金・事前登録制" },
-      { name: "進路相談室", detail: "予約制・無料" }
+      { name: "進路相談室", detail: "予約制・無料" },
+      { name: "江津市教育支援センター あおぞら学園", detail: "掲載内容確認中" },
+      { name: "NPO法人 こどもの居場所（浜田市）", detail: "掲載内容確認中" }
     ]
   },
   aka: {
@@ -606,7 +579,14 @@ const data = {
       { name: "mog-mog farm", detail: "月〜土 9:00〜17:00・島根県江津市土居町", url: "https://www.jalan.net/kankou/spt_guide000000224801/activity/l000054A5A/" },
       { name: "体験農園 みのり", detail: "毎週土曜 9:00〜12:00" },
       { name: "多世代交流センター", detail: "ボランティア随時募集中" },
-      { name: "地域イベント広場", detail: "月1回・詳細はチラシで確認" }
+      { name: "地域イベント広場", detail: "月1回・詳細はチラシで確認" },
+      { name: "こうとうキャンパス（あさりこども園）", detail: "掲載内容確認中" },
+      { name: "うさぎ山こども園", detail: "掲載内容確認中" },
+      { name: "里山子ども園わたぼうし", detail: "掲載内容確認中" },
+      { name: "さくら子ども園", detail: "掲載内容確認中" },
+      { name: "しまね海洋館 アクアス", detail: "掲載内容確認中" },
+      { name: "島根県立少年 自然の家", detail: "掲載内容確認中" },
+      { name: "株式会社コガワ計画 Mランド益田校", detail: "掲載内容確認中" }
     ]
   },
   kiiro: {
@@ -617,7 +597,11 @@ const data = {
     places: [
       { name: "教育相談センター", detail: "平日 9:00〜17:00・無料" },
       { name: "保護者をつなぐ会", detail: "月2回・第1・3水曜" },
-      { name: "子ども相談窓口", detail: "電話・対面どちらでも" }
+      { name: "子ども相談窓口", detail: "電話・対面どちらでも" },
+      { name: "江津市教育支援センター あおぞら学園", detail: "掲載内容確認中" },
+      { name: "ときまち", detail: "掲載内容確認中" },
+      { name: "風のえんがわ", detail: "掲載内容確認中" },
+      { name: "NPO法人 こどもの居場所（浜田市）", detail: "掲載内容確認中" }
     ]
   },
   orange: {
@@ -627,7 +611,10 @@ const data = {
     desc: "放課後の時間を安心して過ごせる場所。利用条件がある場合がありますのでお問い合わせください。",
     places: [
       { name: "放課後等デイサービス", detail: "利用条件あり・要相談" },
-      { name: "放課後 居場所クラブ", detail: "小学生対象・無料" }
+      { name: "放課後 居場所クラブ", detail: "小学生対象・無料" },
+      { name: "REBORN なないろ・そらいろ", detail: "掲載内容確認中" },
+      { name: "ディサービス バンビーノ", detail: "掲載内容確認中" },
+      { name: "ディサービス 彩心（いろは）", detail: "掲載内容確認中" }
     ]
   },
   sora: {
@@ -637,7 +624,8 @@ const data = {
     desc: "特別な支援が受けられる学校や、専門的なコースがある場所です。見学・相談も随時受け付けています。",
     places: [
       { name: "智翠館高校 アスライズコース", detail: "入学相談随時" },
-      { name: "江津清和養護学校", detail: "見学・相談受付中" }
+      { name: "江津清和養護学校", detail: "見学・相談受付中" },
+      { name: "石見智翠館高等学校", detail: "掲載内容確認中" }
     ]
   }
 };
