@@ -65,7 +65,7 @@
     font-size: 13px; padding: 5px 0;
     border-bottom: 0.5px solid #f0f0f0; vertical-align: top;
   }
-  .info-table td:first-child { color: #aaa; width: 60px; flex-shrink: 0; }
+  .info-table td:first-child { color: #aaa; width: 120px; flex-shrink: 0; }
   .info-table tr:last-child td { border-bottom: none; }
   .card-link {
     display: inline-flex; align-items: center; gap: 4px;
@@ -74,39 +74,21 @@
     transition: opacity 0.15s;
   }
   .card-link:hover { opacity: 0.8; }
+  .pending-card {
+    background: #fafafa; border: 1.5px dashed #ccc;
+    border-radius: 16px; padding: 18px 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .pending-icon { font-size: 22px; flex-shrink: 0; }
+  .pending-name { font-size: 15px; font-weight: 600; color: #555; margin-bottom: 4px; }
+  .pending-label {
+    display: inline-block; font-size: 11px; padding: 2px 10px;
+    border-radius: 999px; background: #f0f0f0; color: #999;
+  }
   footer {
     text-align: center; padding: 24px; font-size: 12px;
     color: #bbb; border-top: 1px solid #f0e8c8;
   }
-
-  .pending-card {
-    background: #fafafa;
-    border: 1.5px dashed #ccc;
-    border-radius: 16px;
-    padding: 18px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .pending-icon {
-    font-size: 22px;
-    flex-shrink: 0;
-  }
-  .pending-name {
-    font-size: 15px;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 4px;
-  }
-  .pending-label {
-    display: inline-block;
-    font-size: 11px;
-    padding: 2px 10px;
-    border-radius: 999px;
-    background: #f0f0f0;
-    color: #999;
-  }
-
 </style>
 </head>
 <body>
@@ -120,9 +102,30 @@
     <div class="hero-title">『あかの場所』</div>
     <p class="hero-desc">体を動かしたり、実際に何かを体験したり。農業・ボランティア・多世代の人たちとの交流ができます。</p>
   </div>
+
   <div class="section-title">この場所の一覧</div>
   <div class="cards-grid">
-    
+
+    <div class="place-card">
+      <div class="place-photo-placeholder" style="background:#fde8e8">🏫</div>
+      <div class="place-body">
+        <span class="place-badge" style="background:#f9c0c0;color:#a03030;border-color:#f5a0a0">子どもの居場所</span>
+        <div class="place-name" style="color:#a03030">こうとうキャンパス（あさりこども園）</div>
+        <div class="place-subtitle">卒園生・法人保護者の子どもの居場所</div>
+        <p class="place-desc">卒園した生徒や法人で働いている保護者の子どもを対象に、園児たちのサポートを行っています。口コミでつながる温かい居場所です。</p>
+        <table class="info-table">
+          <tr><td>対象</td><td>卒園した生徒・法人で働く保護者の子ども</td></tr>
+          <tr><td>どんなサポートや活動をしている？</td><td>園児たちのサポート</td></tr>
+          <tr><td>時間</td><td>平日 9:00〜17:00</td></tr>
+          <tr><td>費用</td><td>無料</td></tr>
+          <tr><td>利用ルート</td><td>口コミ</td></tr>
+          <tr><td>住所</td><td>江津市浅利町336-4</td></tr>
+          <tr><td>電話</td><td>0855-55-1024</td></tr>
+        </table>
+        <a class="card-link" href="https://sites.google.com/view/koto-campus" target="_blank" rel="noopener" style="color:#a03030;border-color:#f5a0a0;background:#fde8e8">ホームページを見る ↗</a>
+      </div>
+    </div>
+
     <div class="place-card">
       <div class="place-photo-placeholder" style="background:#fde8e8">🌾</div>
       <div class="place-body">
@@ -131,113 +134,25 @@
         <div class="place-subtitle">島根県江津市土居町</div>
         <p class="place-desc">新鮮な農産物の直売や農業体験ができる農場です。土に触れながら、自然の恵みを感じてみませんか。</p>
         <table class="info-table">
-          <tr><td>開催日</td><td>月〜土</td></tr><tr><td>時間</td><td>9:00〜17:00</td></tr><tr><td>費用</td><td>要相談</td></tr><tr><td>住所</td><td>島根県江津市土居町</td></tr>
+          <tr><td>開催日</td><td>月〜土</td></tr>
+          <tr><td>時間</td><td>9:00〜17:00</td></tr>
+          <tr><td>費用</td><td>要相談</td></tr>
+          <tr><td>住所</td><td>島根県江津市土居町</td></tr>
         </table>
         <a class="card-link" href="https://www.jalan.net/kankou/spt_guide000000224801/activity/l000054A5A/" target="_blank" rel="noopener" style="color:#a03030;border-color:#f5a0a0;background:#fde8e8">詳細を見る ↗</a>
       </div>
     </div>
 
-    <div class="place-card">
-      <div class="place-photo-placeholder" style="background:#fde8e8">🥕</div>
-      <div class="place-body">
-        <span class="place-badge" style="background:#f9c0c0;color:#a03030;border-color:#f5a0a0">農業体験</span>
-        <div class="place-name" style="color:#a03030">体験農園 みのり</div>
-        <div class="place-subtitle">季節の農作業を体験</div>
-        <p class="place-desc">季節ごとの農作業が体験できます。土に触れ、作物を育てる喜びを感じてください。</p>
-        <table class="info-table">
-          <tr><td>開催日</td><td>毎週土曜</td></tr><tr><td>時間</td><td>9:00〜12:00</td></tr><tr><td>費用</td><td>無料</td></tr>
-        </table>
-        
-      </div>
-    </div>
-
-    <div class="place-card">
-      <div class="place-photo-placeholder" style="background:#fde8e8">🤝</div>
-      <div class="place-body">
-        <span class="place-badge" style="background:#f9c0c0;color:#a03030;border-color:#f5a0a0">ボランティア・交流</span>
-        <div class="place-name" style="color:#a03030">多世代交流センター</div>
-        <div class="place-subtitle">世代を超えてつながる場所</div>
-        <p class="place-desc">子どもから高齢者まで、世代を超えた交流ができます。ボランティアとして参加するのも歓迎です。</p>
-        <table class="info-table">
-          <tr><td>開催日</td><td>随時</td></tr><tr><td>費用</td><td>無料</td></tr><tr><td>ボランティア</td><td>随時募集中</td></tr>
-        </table>
-        
-      </div>
-    </div>
-
-    <div class="place-card">
-      <div class="place-photo-placeholder" style="background:#fde8e8">🎉</div>
-      <div class="place-body">
-        <span class="place-badge" style="background:#f9c0c0;color:#a03030;border-color:#f5a0a0">地域イベント</span>
-        <div class="place-name" style="color:#a03030">地域イベント広場</div>
-        <div class="place-subtitle">月1回・地域みんなで楽しむ</div>
-        <p class="place-desc">月に1回開催される地域のイベント広場。地域の人たちと楽しく体を動かしたり交流できます。</p>
-        <table class="info-table">
-          <tr><td>開催日</td><td>月1回</td></tr><tr><td>詳細</td><td>チラシ・SNSで確認</td></tr>
-        </table>
-        
-      </div>
-    </div>
   </div>
 
-  <div class="section-title" style="margin-top:0">掲載準備中の場所</div>
+  <div class="section-title">掲載準備中の場所</div>
   <div class="cards-grid">
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">こうとうキャンパス（あさりこども園）</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">うさぎ山こども園</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">里山子ども園わたぼうし</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">さくら子ども園</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">しまね海洋館 アクアス</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">島根県立少年 自然の家</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">株式会社コガワ計画 Mランド益田校</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
+    <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">うさぎ山こども園</div><span class="pending-label">掲載内容確認中</span></div></div>
+    <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">里山子ども園わたぼうし</div><span class="pending-label">掲載内容確認中</span></div></div>
+    <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">さくら子ども園</div><span class="pending-label">掲載内容確認中</span></div></div>
+    <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">しまね海洋館 アクアス</div><span class="pending-label">掲載内容確認中</span></div></div>
+    <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">島根県立少年 自然の家</div><span class="pending-label">掲載内容確認中</span></div></div>
+    <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">株式会社コガワ計画 Mランド益田校</div><span class="pending-label">掲載内容確認中</span></div></div>
   </div>
 
 </main>

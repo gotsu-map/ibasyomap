@@ -65,7 +65,7 @@
     font-size: 13px; padding: 5px 0;
     border-bottom: 0.5px solid #f0f0f0; vertical-align: top;
   }
-  .info-table td:first-child { color: #aaa; width: 60px; flex-shrink: 0; }
+  .info-table td:first-child { color: #aaa; width: 120px; flex-shrink: 0; }
   .info-table tr:last-child td { border-bottom: none; }
   .card-link {
     display: inline-flex; align-items: center; gap: 4px;
@@ -74,39 +74,21 @@
     transition: opacity 0.15s;
   }
   .card-link:hover { opacity: 0.8; }
+  .pending-card {
+    background: #fafafa; border: 1.5px dashed #ccc;
+    border-radius: 16px; padding: 18px 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .pending-icon { font-size: 22px; flex-shrink: 0; }
+  .pending-name { font-size: 15px; font-weight: 600; color: #555; margin-bottom: 4px; }
+  .pending-label {
+    display: inline-block; font-size: 11px; padding: 2px 10px;
+    border-radius: 999px; background: #f0f0f0; color: #999;
+  }
   footer {
     text-align: center; padding: 24px; font-size: 12px;
     color: #bbb; border-top: 1px solid #f0e8c8;
   }
-
-  .pending-card {
-    background: #fafafa;
-    border: 1.5px dashed #ccc;
-    border-radius: 16px;
-    padding: 18px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .pending-icon {
-    font-size: 22px;
-    flex-shrink: 0;
-  }
-  .pending-name {
-    font-size: 15px;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 4px;
-  }
-  .pending-label {
-    display: inline-block;
-    font-size: 11px;
-    padding: 2px 10px;
-    border-radius: 999px;
-    background: #f0f0f0;
-    color: #999;
-  }
-
 </style>
 </head>
 <body>
@@ -120,110 +102,40 @@
     <div class="hero-title">『ピンクの場所』</div>
     <p class="hero-desc">誰かと同じ空間でゆったり過ごせる場所。話してもいいし、ただいるだけでもOK。</p>
   </div>
+
   <div class="section-title">この場所の一覧</div>
   <div class="cards-grid">
-    
+
     <div class="place-card">
-      <div class="place-photo-placeholder" style="background:#fde8f2">🍚</div>
+      <div class="place-photo-placeholder" style="background:#fde8f2">🏫</div>
       <div class="place-body">
-        <span class="place-badge" style="background:#f9c8e2;color:#a03070;border-color:#f5a7cc">食・交流</span>
-        <div class="place-name" style="color:#c03878">こども食堂 ほっこり</div>
-        <div class="place-subtitle">温かい食事と居場所</div>
-        <p class="place-desc">誰でも気軽に立ち寄れるこども食堂です。温かい食事を囲みながら、自然と人との輪が広がります。</p>
+        <span class="place-badge" style="background:#f9c8e2;color:#a03070;border-color:#f5a7cc">子どもの居場所</span>
+        <div class="place-name" style="color:#c03878">こうとうキャンパス（あさりこども園）</div>
+        <div class="place-subtitle">卒園生・法人保護者の子どもの居場所</div>
+        <p class="place-desc">卒園した生徒や法人で働いている保護者の子どもを対象に、園児たちのサポートを行っています。口コミでつながる温かい居場所です。</p>
         <table class="info-table">
-          <tr><td>開催日</td><td>毎週木曜</td></tr><tr><td>時間</td><td>17:00〜19:00</td></tr><tr><td>費用</td><td>無料</td></tr><tr><td>予約</td><td>不要</td></tr>
+          <tr><td>対象</td><td>卒園した生徒・法人で働く保護者の子ども</td></tr>
+          <tr><td>どんなサポートや活動をしている？</td><td>園児たちのサポート</td></tr>
+          <tr><td>時間</td><td>平日 9:00〜17:00</td></tr>
+          <tr><td>費用</td><td>無料</td></tr>
+          <tr><td>利用ルート</td><td>口コミ</td></tr>
+          <tr><td>住所</td><td>江津市浅利町336-4</td></tr>
+          <tr><td>電話</td><td>0855-55-1024</td></tr>
         </table>
-        
+        <a class="card-link" href="https://sites.google.com/view/koto-campus" target="_blank" rel="noopener" style="color:#c03878;border-color:#f5a7cc;background:#fde8f2">ホームページを見る ↗</a>
       </div>
     </div>
 
-    <div class="place-card">
-      <div class="place-photo-placeholder" style="background:#fde8f2">🌸</div>
-      <div class="place-body">
-        <span class="place-badge" style="background:#f9c8e2;color:#a03070;border-color:#f5a7cc">憩いの場</span>
-        <div class="place-name" style="color:#c03878">□□園 開放スペース</div>
-        <div class="place-subtitle">子連れ歓迎・ほっとできる場所</div>
-        <p class="place-desc">子どもと一緒にゆっくり過ごせる開放スペースです。他のお父さん・お母さんとの交流もできます。</p>
-        <table class="info-table">
-          <tr><td>開催日</td><td>平日</td></tr><tr><td>時間</td><td>9:00〜16:00</td></tr><tr><td>費用</td><td>無料</td></tr>
-        </table>
-        
-      </div>
-    </div>
-
-    <div class="place-card">
-      <div class="place-photo-placeholder" style="background:#fde8f2">🏠</div>
-      <div class="place-body">
-        <span class="place-badge" style="background:#f9c8e2;color:#a03070;border-color:#f5a7cc">交流・つながり</span>
-        <div class="place-name" style="color:#c03878">地域交流センター</div>
-        <div class="place-subtitle">土日も開放・誰でも参加OK</div>
-        <p class="place-desc">地域の人が集まる交流スペースです。土日も開いているので、休日に気軽に立ち寄れます。</p>
-        <table class="info-table">
-          <tr><td>開催日</td><td>月〜日</td></tr><tr><td>時間</td><td>9:00〜17:00</td></tr><tr><td>費用</td><td>無料</td></tr>
-        </table>
-        
-      </div>
-    </div>
   </div>
 
-  <div class="section-title" style="margin-top:0">掲載準備中の場所</div>
+  <div class="section-title">掲載準備中の場所</div>
   <div class="cards-grid">
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">こうとうキャンパス（あさりこども園）</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">うさぎ山こども園</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">里山子ども園わたぼうし</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">さくら子ども園</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">ときまち</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">風のえんがわ</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
-
-    <div class="pending-card">
-      <div class="pending-icon">📋</div>
-      <div>
-        <div class="pending-name">NPO法人 こどもの居場所（浜田市）</div>
-        <span class="pending-label">掲載内容確認中</span>
-      </div>
-    </div>
+    <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">うさぎ山こども園</div><span class="pending-label">掲載内容確認中</span></div></div>
+    <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">里山子ども園わたぼうし</div><span class="pending-label">掲載内容確認中</span></div></div>
+    <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">さくら子ども園</div><span class="pending-label">掲載内容確認中</span></div></div>
+    <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">ときまち</div><span class="pending-label">掲載内容確認中</span></div></div>
+    <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">風のえんがわ</div><span class="pending-label">掲載内容確認中</span></div></div>
+    <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">NPO法人 こどもの居場所（浜田市）</div><span class="pending-label">掲載内容確認中</span></div></div>
   </div>
 
 </main>
