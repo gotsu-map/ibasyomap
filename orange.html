@@ -11,24 +11,25 @@
   .back-btn { font-size:13px; color:#c06020; text-decoration:none; padding:5px 14px; border:1px solid #f5c090; border-radius:999px; transition:background 0.15s; }
   .back-btn:hover { background:#fff4e8; }
   .site-title { font-size:14px; color:#888; }
-  main { max-width:780px; margin:0 auto; padding:32px 16px 60px; }
+  main { max-width:900px; margin:0 auto; padding:32px 16px 60px; }
   .page-hero { background:#fff4e8; border:2px solid #f5c090; border-radius:20px; padding:24px 28px; margin-bottom:32px; }
   .hero-badge { background:#fde0b8; color:#c06020; font-size:13px; font-weight:700; padding:5px 16px; border-radius:999px; display:inline-block; margin-bottom:8px; }
   .hero-title { font-size:28px; font-weight:700; color:#c06020; margin-bottom:6px; }
   .hero-desc { font-size:14px; color:#555; line-height:1.8; }
   .section-title { font-size:15px; font-weight:700; color:#c06020; margin-bottom:16px; padding-bottom:6px; border-bottom:2px solid #f5c090; }
-  .cards-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; margin-bottom:40px; }
+  .cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; margin-bottom:40px; }
   .place-card { background:white; border:1.5px solid #f5c090; border-radius:16px; overflow:hidden; transition:box-shadow 0.15s,transform 0.15s; }
   .place-card:hover { box-shadow:0 4px 16px rgba(0,0,0,0.10); transform:translateY(-2px); }
   .place-photo-placeholder { width:100%; height:120px; display:flex; align-items:center; justify-content:center; font-size:40px; }
   .place-body { padding:16px 20px 20px; }
   .place-badge { display:inline-block; font-size:11px; font-weight:700; padding:3px 12px; border-radius:999px; border:1px solid; margin-bottom:8px; }
   .place-name { font-size:20px; font-weight:700; margin-bottom:4px; }
-  .info-table { width:100%; border-collapse:collapse; margin-bottom:14px; }
-  .info-table td { font-size:13px; padding:5px 0; border-bottom:0.5px solid #f0f0f0; vertical-align:top; }
-  .info-table td:first-child { color:#aaa; width:140px; flex-shrink:0; }
+  .info-table { width:100%; border-collapse:collapse; margin-bottom:10px; }
+  .info-table td { font-size:12px; padding:4px 0; border-bottom:0.5px solid #f0f0f0; vertical-align:top; }
+  .info-table td:first-child { color:#aaa; width:100px; flex-shrink:0; }
   .info-table tr:last-child td { border-bottom:none; }
-  .card-link { display:inline-flex; align-items:center; gap:4px; font-size:13px; font-weight:700; text-decoration:none; padding:7px 16px; border-radius:999px; border:1.5px solid; transition:opacity 0.15s; }
+  .branch-label { font-size:11px; color:#aaa; font-weight:600; margin-bottom:4px; margin-top:8px; }
+  .card-link { display:inline-flex; align-items:center; gap:4px; font-size:12px; font-weight:700; text-decoration:none; padding:6px 12px; border-radius:999px; border:1.5px solid; transition:opacity 0.15s; margin-top:4px; }
   .card-link:hover { opacity:0.8; }
   footer { text-align:center; padding:24px; font-size:12px; color:#bbb; border-top:1px solid #f0e8c8; }
 </style>
@@ -56,35 +57,37 @@
         <table class="info-table">
           <tr><td>対象</td><td>市内の小・中学校、浜田養護（小〜高）、江津清和養護（小〜高）</td></tr>
           <tr><td>どんなサポートや活動をしている？</td><td>日常生活スキル・コミュニケーション支援、留守番や児童クラブへの移行に向けた自立支援</td></tr>
-          <tr><td>時間</td><td>月〜金（祝日休み）13:30〜17:30（放課後）</td></tr>
-          <tr><td>費用</td><td>受給者証が必須。上限4,600円（世帯により異なる）／おやつ代100円（実費）／その他活動費（実費）</td></tr>
+          <tr><td>時間</td><td>月〜金（祝日休み）13:30〜17:30</td></tr>
+          <tr><td>費用</td><td>受給者証必須。上限4,600円／おやつ代100円（実費）</td></tr>
           <tr><td>利用ルート</td><td>相談支援員さんに相談を。まずは受給者証をもらうところから。</td></tr>
         </table>
-        <div style="font-size:12px;color:#aaa;margin-bottom:6px;font-weight:600;">【REBORN なないろ】</div>
-        <table class="info-table" style="margin-bottom:10px;">
-          <tr><td style="width:60px">住所</td><td>江津市二宮町神主2190-1</td></tr>
+        <div class="branch-label">【REBORN なないろ】</div>
+        <table class="info-table">
+          <tr><td>住所</td><td>江津市二宮町神主2190-1</td></tr>
           <tr><td>電話</td><td>0855-52-7743</td></tr>
         </table>
-        <div style="font-size:12px;color:#aaa;margin-bottom:6px;font-weight:600;">【REBORN そらいろ】</div>
-        <table class="info-table" style="margin-bottom:14px;">
-          <tr><td style="width:60px">住所</td><td>江津市二宮町神主2190-4</td></tr>
+        <div class="branch-label">【REBORN そらいろ】</div>
+        <table class="info-table">
+          <tr><td>住所</td><td>江津市二宮町神主2190-4</td></tr>
           <tr><td>電話</td><td>0855-52-7681</td></tr>
         </table>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
           <a class="card-link" href="https://enbukikaku.jimdofree.com/" target="_blank" rel="noopener" style="color:#c06020;border-color:#f5c090;background:#fff4e8">ホームページ ↗</a>
           <a class="card-link" href="https://www.instagram.com/reborn_7716/" target="_blank" rel="noopener" style="color:#c06020;border-color:#f5c090;background:#fff4e8">Instagram ↗</a>
         </div>
       </div>
-        <div class="place-card">
+    </div>
+
+    <div class="place-card">
       <div class="place-photo-placeholder" style="background:#fff4e8">🌟</div>
       <div class="place-body">
         <span class="place-badge" style="background:#fde0b8;color:#c06020;border-color:#f5c090">放課後等デイサービス</span>
         <div class="place-name" style="color:#c06020">放課後等ディサービス バンビーノ</div>
         <table class="info-table">
-          <tr><td>対象</td><td>就学している障害児。R6より不登校児も放デイ利用可能（病院からの認定が必要。市の障害福祉課課長・在籍校長などの許可も必要）。AMに開けることも可能。</td></tr>
+          <tr><td>対象</td><td>就学している障害児。R6より不登校児も放デイ利用可能（病院認定・市障害福祉課課長・在籍校長の許可必要）。AMも可。</td></tr>
           <tr><td>どんなサポートや活動をしている？</td><td>集団活動を毎日30〜40分実施。他はレクなどその日によって内容が変わります。</td></tr>
-          <tr><td>時間</td><td>月〜金（祝日休み）：平日 14:00〜18:00、長期休業中 9:00〜17:00</td></tr>
-          <tr><td>費用</td><td>保護者の世帯収入による（上限あり）。おやつ代 1日100円。</td></tr>
+          <tr><td>時間</td><td>月〜金（祝日休み）平日 14:00〜18:00、長期休業中 9:00〜17:00</td></tr>
+          <tr><td>費用</td><td>世帯収入による（上限あり）。おやつ代 1日100円。</td></tr>
           <tr><td>利用ルート</td><td>相談支援員さんに相談を。まずは受給者証をもらうところから。</td></tr>
           <tr><td>住所</td><td>江津市二宮町神主イ1215</td></tr>
           <tr><td>電話</td><td>0855-52-7201</td></tr>
@@ -100,14 +103,14 @@
         <div class="place-name" style="color:#c06020">ディサービス 彩心（いろは）</div>
         <table class="info-table">
           <tr><td>対象</td><td>小1〜高3・発達障害。うち不登校（中：1名）・不登校傾向（小：2名）。常時利用5名程度・登録15名。</td></tr>
-          <tr><td>どんなサポートや活動をしている？</td><td>1人1人に合った関わりを大切に、できるところ・よいところをしっかり評価。室内運動・ボルダリング・ボール遊び・デザイン（CANVA）・タイピング・ドローン・シーグラスアート・食育（アクアスと連携）・高性能ゲーミングPC・eスポーツ・日常生活支援（時計・お金の計算・買い物の仕方など）。</td></tr>
+          <tr><td>どんなサポートや活動をしている？</td><td>1人1人に合った関わりを大切に評価。室内運動・ボルダリング・デザイン（CANVA）・タイピング・ドローン・シーグラスアート・食育・ゲーミングPC・eスポーツ・日常生活支援など。</td></tr>
           <tr><td>時間</td><td>平日 13:30〜17:30 ／ 土・祝 9:00〜17:00（送迎あり：浜田・大田方面）</td></tr>
-          <tr><td>費用</td><td>上限4,600円／おやつ代100円（実費）／調理活動費500円（実費）／遠足代（実費）</td></tr>
+          <tr><td>費用</td><td>上限4,600円／おやつ代100円／調理活動費500円／遠足代（各実費）</td></tr>
           <tr><td>利用ルート</td><td>受給者証を申請して、相談員を通して見学・体験をして契約。</td></tr>
           <tr><td>住所</td><td>江津市嘉久志町2309-3</td></tr>
           <tr><td>電話</td><td>050-8880-7865</td></tr>
         </table>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
           <a class="card-link" href="https://www.sunflowers2020.com/dayservice" target="_blank" rel="noopener" style="color:#c06020;border-color:#f5c090;background:#fff4e8">放課後等デイサービス ↗</a>
           <a class="card-link" href="https://www.instagram.com/junior_club_xx/" target="_blank" rel="noopener" style="color:#c06020;border-color:#f5c090;background:#fff4e8">Instagram ↗</a>
         </div>
