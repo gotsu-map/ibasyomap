@@ -1,2 +1,4 @@
-plugins:
-  - jekyll-sitemap
+title: ibasyomap
+
+url: https://gotsu-map.github.io
+baseurl: /ibasyomap
