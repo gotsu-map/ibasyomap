@@ -66,7 +66,6 @@
           <tr><td>住所</td><td>江津市浅利町336-4</td></tr>
           <tr><td>電話</td><td>0855-55-1024</td></tr>
         </table>
-
         <a class="card-link" href="https://sites.google.com/view/koto-campus" target="_blank" rel="noopener" style="color:#c03878;border-color:#f5a7cc;background:#fde8f2">ホームページ ↗</a>
       </div>
     </div>
@@ -106,16 +105,11 @@
           <tr><td>利用ルート</td><td>こうとうキャンパス・ときまち経由の口コミ</td></tr>
           <tr><td>住所</td><td>江津市後地町2398</td></tr>
         </table>
-
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <a class="card-link" href="https://kazenoengawa.work/" target="_blank" rel="noopener" style="color:#c03878;border-color:#f5a7cc;background:#fde8f2">ホームページ ↗</a>
-          <a class="card-link" href="https://www.instagram.com/kazenoengawa/" target="_blank" rel="noopener" style="color:#c03878;border-color:#f5a7cc;background:#fde8f2">Instagram ↗</a>
-        </div>
       </div>
     </div>
 
     <div class="place-card">
-      <img src="kodomo.jpg" alt="NPO法人 こどもの居場所（浜田市）" style="width:100%;height:280px;object-fit:cover;display:block;">
+      <img src="ajisai.jpg" alt="児童発達支援 放課後等デイサービス あじさい" style="width:100%;height:280px;object-fit:cover;display:block;">
       <div class="place-body">
         <span class="place-badge" style="background:#f9c8e2;color:#a03070;border-color:#f5a7cc">フリースクール・オンライン</span>
         <div class="place-name" style="color:#c03878">NPO法人 こどもの居場所（浜田市）</div>
@@ -128,17 +122,12 @@
           <tr><td>住所</td><td>浜田市田町1655</td></tr>
           <tr><td>電話</td><td>0855-25-5110</td></tr>
         </table>
-
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <a class="card-link" href="https://www.iwamikodomo.or.jp/" target="_blank" rel="noopener" style="color:#c03878;border-color:#f5a7cc;background:#fde8f2">ホームページ ↗</a>
-          <a class="card-link" href="https://www.instagram.com/iwaminokodomo/" target="_blank" rel="noopener" style="color:#c03878;border-color:#f5a7cc;background:#fde8f2">Instagram ↗</a>
-          <a class="card-link" href="https://line.me/R/ti/p/@989zydgb" target="_blank" rel="noopener" style="color:#c03878;border-color:#f5a7cc;background:#fde8f2">公式LINE ↗</a>
-        </div>
+        <a class="card-link" href="https://www.iwamikodomo.or.jp/" target="_blank" rel="noopener" style="color:#c03878;border-color:#f5a7cc;background:#fde8f2">ホームページ ↗</a>
       </div>
     </div>
 
     <div class="place-card">
-      <img src="ajisai.jpg" alt="児童発達支援 放課後等デイサービス あじさい" style="width:100%;height:280px;object-fit:cover;display:block;">
+      <img src="creato.jpg" alt="クレアト" style="width:100%;height:280px;object-fit:cover;display:block;">
       <div class="place-body">
         <span class="place-badge" style="background:#f9c8e2;color:#a03070;border-color:#f5a7cc">児童発達支援・放課後等デイサービス</span>
         <div class="place-name" style="color:#c03878">児童発達支援 放課後等デイサービス あじさい</div>
@@ -151,37 +140,12 @@
           <tr><td>住所</td><td>江津市後地町3165-3</td></tr>
           <tr><td>電話</td><td>090-8034-3331</td></tr>
         </table>
-
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <a class="card-link" href="https://www.hana-mura.net/news/20260501-ajisai/" target="_blank" rel="noopener" style="color:#c03878;border-color:#f5a7cc;background:#fde8f2">ホームページ ↗</a>
-          <a class="card-link" href="https://www.instagram.com/hanahouday/" target="_blank" rel="noopener" style="color:#c03878;border-color:#f5a7cc;background:#fde8f2">Instagram ↗</a>
-        </div>
+        <a class="card-link" href="https://www.hana-mura.net/" target="_blank" rel="noopener" style="color:#c03878;border-color:#f5a7cc;background:#fde8f2">ホームページ ↗</a>
       </div>
     </div>
 
     <div class="place-card">
-      <img src="creato.jpg" alt="クレアト" style="width:100%;height:280px;object-fit:cover;display:block;">
-      <div class="place-body">
-        <span class="place-badge" style="background:#f9c8e2;color:#a03070;border-color:#f5a7cc">居場所・体験</span>
-        <div class="place-name" style="color:#c03878">クレアト</div>
-        <table class="info-table">
-          <tr><td>対象</td><td>小学生・中学生</td></tr>
-          <tr><td>どんなサポートや活動をしている？</td><td>「来れば、跡市に。」そんなノリでふらっと来ることができて、自分の「やりたい」をクリエイトする場所。跡市の自然の中で思いっきり遊ぶ・工作やクッキングなど何かを作る。</td></tr>
-          <tr><td>時間</td><td>火曜 9:00〜15:00（ときまち間の送迎あり）</td></tr>
-          <tr><td>費用</td><td>無料（活動内容によって実費かかる場合あり）</td></tr>
-          <tr><td>利用ルート</td><td>公式インスタグラム・ときまちからの紹介など</td></tr>
-          <tr><td>住所</td><td>江津市跡市町632</td></tr>
-          <tr><td>電話</td><td>0855-56-2104</td></tr>
-        </table>
-        <a class="card-link" href="https://www.instagram.com/kureato.kodomonoibasho/tagged/" target="_blank" rel="noopener" style="color:#c03878;border-color:#f5a7cc;background:#fde8f2">Instagram ↗</a>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="section-title">掲載準備中の場所</div>
-  <div class="cards-grid">
-    <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">里山子ども園わたぼうし</div><span class="pending-label">掲載内容確認中</span></div></div>
+      <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">里山子ども園わたぼうし</div><span class="pending-label">掲載内容確認中</span></div></div>
     <div class="pending-card"><div class="pending-icon">📋</div><div><div class="pending-name">さくら子ども園</div><span class="pending-label">掲載内容確認中</span></div></div>
   </div>
 
