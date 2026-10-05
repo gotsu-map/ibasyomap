@@ -457,14 +457,14 @@
       <div class="place-card pink" onclick="location.href='pink.html'" style="cursor:pointer;">
         <div class="bubble pink">誰かの気配を感じながらほっとしたい</div>
         <div class="place-name pink">『ピンクの場所』</div>
-        <div class="place-sub">📍 こうとうキャンパス・ときまち・風のえんがわ など</div>
+        <div class="place-sub">📍 こうとうキャンパス・ときまち・おっちゃんち など</div>
       </div>
 
       <div class="other-box">
         <div class="other-title">他にもこんな場所があるよ</div>
         <div class="other-card orange" onclick="location.href='orange.html'" style="cursor:pointer;">
           <div class="other-card-name orange">『オレンジの場所』</div>
-          <div class="other-card-sub">REBORN なないろ・そらいろ・バンビーノ・彩心（いろは）</div>
+          <div class="other-card-sub">REBORN なないろ・そらいろ・バンビーノ・彩心（いろは）・おっちゃんち</div>
         </div>
         <div class="other-card sora" onclick="location.href='sora.html'" style="cursor:pointer;">
           <div class="other-card-name sora">『空色の場所』</div>
@@ -488,13 +488,13 @@
       <div class="place-card red" onclick="location.href='aka.html'" style="cursor:pointer;">
         <div class="bubble red">体を動かしたり体験したりしたい</div>
         <div class="place-name red">『あかの場所』</div>
-        <div class="place-sub">📍 こうとうキャンパス・アクアス・自然の家 など</div>
+        <div class="place-sub">📍 こうとうキャンパス・アクアス・おっちゃんち など</div>
       </div>
 
       <div class="place-card yellow" onclick="location.href='kiiro.html'" style="cursor:pointer;">
         <div class="bubble yellow">まずは誰かに話を聞いてほしい</div>
         <div class="place-name yellow">『きいろの場所』</div>
-        <div class="place-sub">📍 あおぞら学園・ときまち・風のえんがわ など</div>
+        <div class="place-sub">📍 あおぞら学園・ときまち・おっちゃんち など</div>
       </div>
     </div>
   </div>
@@ -530,13 +530,10 @@ const data = {
     tag: "一人でゆっくり",
     desc: "静かに過ごせる、一人の時間を大切にできる場所です。自分のペースで来て、自分のペースで帰れます。",
     places: [
-
-      { name: "図書館 静かな読書コーナー", detail: "個別席あり・予約不要" },
-      { name: "△△個別スペース", detail: "月〜土 10:00〜17:00" },
-      { name: "ときまち", detail: "掲載内容確認中" },
-      { name: "風のえんがわ", detail: "掲載内容確認中" },
-      { name: "NPO法人 こどもの居場所（浜田市）", detail: "掲載内容確認中" },
-      { name: "株式会社コガワ計画 Mランド益田校", detail: "掲載内容確認中" }
+      { name: "ときまち", detail: "江津市後地町1264-1" },
+      { name: "風のえんがわ", detail: "江津市嘉久志町1939" },
+      { name: "NPO法人 こどもの居場所（浜田市）", detail: "浜田市田町1655" },
+      { name: "株式会社コガワ計画 Mランド益田校", detail: "益田市虫追町イ-201" }
     ]
   },
   pink: {
@@ -545,16 +542,16 @@ const data = {
     tag: "みんなでほっこり",
     desc: "誰かと同じ空間でゆったり過ごせる場所。話してもいいし、ただいるだけでもOK。",
     places: [
-      { name: "こども食堂 ほっこり", detail: "毎週木曜 17:00〜19:00・無料" },
-      { name: "□□園 開放スペース", detail: "平日 9:00〜16:00・子連れ歓迎" },
-      { name: "地域交流センター", detail: "土日も開いています" },
-      { name: "こうとうキャンパス（あさりこども園）", detail: "掲載内容確認中" },
-      { name: "うさぎ山こども園", detail: "掲載内容確認中" },
-      { name: "里山子ども園わたぼうし", detail: "掲載内容確認中" },
-      { name: "さくら子ども園", detail: "掲載内容確認中" },
-      { name: "ときまち", detail: "掲載内容確認中" },
-      { name: "風のえんがわ", detail: "掲載内容確認中" },
-      { name: "NPO法人 こどもの居場所（浜田市）", detail: "掲載内容確認中" }
+      { name: "こうとうキャンパス（あさりこども園）", detail: "江津市浅利町336-4" },
+      { name: "ときまち", detail: "江津市後地町1264-1" },
+      { name: "風のえんがわ", detail: "江津市嘉久志町1939" },
+      { name: "NPO法人こどもの居場所", detail: "浜田市田町1655" },
+      { name: "児童発達支援 放課後等デイサービス あじさい", detail: "邑南町出羽49" },
+      { name: "クレアト", detail: "江津市江津町1664" },
+      { name: "フリースペース結のひろば（里山子ども園わたぼうし）", detail: "江津市波子町イ-1085" },
+      { name: "さくらこども園", detail: "江津市江津町1丁目24-1" },
+      { name: "うさぎ山こども園", detail: "江津市江津町317" },
+      { name: "おっちゃんち", detail: "江津市都野津町2279-23" }
     ]
   },
   ao: {
@@ -563,11 +560,8 @@ const data = {
     tag: "学び・将来",
     desc: "勉強や進路、将来のことを一緒に考えてくれる場所。プロのサポートを受けながら自分のペースで学べます。",
     places: [
-      { name: "学習支援センター", detail: "火・木・土 14:00〜18:00" },
-      { name: "フリースクール ひだまり", detail: "月〜金・事前登録制" },
-      { name: "進路相談室", detail: "予約制・無料" },
-      { name: "江津市教育支援センター あおぞら学園", detail: "掲載内容確認中" },
-      { name: "NPO法人 こどもの居場所（浜田市）", detail: "掲載内容確認中" }
+      { name: "江津市教育支援センター あおぞら学園", detail: "江津市江津町1167-2（江津保健センター内）" },
+      { name: "NPO法人こどもの居場所", detail: "浜田市田町1655" }
     ]
   },
   aka: {
@@ -576,17 +570,16 @@ const data = {
     tag: "体験・つながり",
     desc: "体を動かしたり、実際に何かを体験したり。農業・ボランティア・多世代の人たちとの交流ができます。",
     places: [
-
-      { name: "体験農園 みのり", detail: "毎週土曜 9:00〜12:00" },
-      { name: "多世代交流センター", detail: "ボランティア随時募集中" },
-      { name: "地域イベント広場", detail: "月1回・詳細はチラシで確認" },
-      { name: "こうとうキャンパス（あさりこども園）", detail: "掲載内容確認中" },
-      { name: "うさぎ山こども園", detail: "掲載内容確認中" },
-      { name: "里山子ども園わたぼうし", detail: "掲載内容確認中" },
-      { name: "さくら子ども園", detail: "掲載内容確認中" },
-      { name: "しまね海洋館 アクアス", detail: "掲載内容確認中" },
-      { name: "島根県立少年 自然の家", detail: "掲載内容確認中" },
-      { name: "株式会社コガワ計画 Mランド益田校", detail: "掲載内容確認中" }
+      { name: "こうとうキャンパス（あさりこども園）", detail: "江津市浅利町336-4" },
+      { name: "しまね海洋館 アクアス", detail: "浜田市久代町1117-2" },
+      { name: "島根県立少年自然の家", detail: "邑智郡美郷町粕渕1945" },
+      { name: "児童発達支援 放課後等デイサービス あじさい", detail: "邑南町出羽49" },
+      { name: "クレアト", detail: "江津市江津町1664" },
+      { name: "フリースペース結のひろば（里山子ども園わたぼうし）", detail: "江津市波子町イ-1085" },
+      { name: "さくらこども園", detail: "江津市江津町1丁目24-1" },
+      { name: "うさぎ山こども園", detail: "江津市江津町317" },
+      { name: "株式会社コガワ計画 Mランド益田校", detail: "益田市虫追町イ-201" },
+      { name: "おっちゃんち", detail: "江津市都野津町2279-23" }
     ]
   },
   kiiro: {
@@ -595,13 +588,11 @@ const data = {
     tag: "相談・つながる",
     desc: "まず話を聞いてほしいときに。専門スタッフや保護者同士がつながれる場所です。",
     places: [
-      { name: "教育相談センター", detail: "平日 9:00〜17:00・無料" },
-      { name: "保護者をつなぐ会", detail: "月2回・第1・3水曜" },
-      { name: "子ども相談窓口", detail: "電話・対面どちらでも" },
-      { name: "江津市教育支援センター あおぞら学園", detail: "掲載内容確認中" },
-      { name: "ときまち", detail: "掲載内容確認中" },
-      { name: "風のえんがわ", detail: "掲載内容確認中" },
-      { name: "NPO法人 こどもの居場所（浜田市）", detail: "掲載内容確認中" }
+      { name: "江津市教育支援センター あおぞら学園", detail: "江津市江津町1167-2（江津保健センター内）" },
+      { name: "ときまち", detail: "江津市後地町1264-1" },
+      { name: "風のえんがわ", detail: "江津市嘉久志町1939" },
+      { name: "NPO法人こどもの居場所", detail: "浜田市田町1655" },
+      { name: "おっちゃんち", detail: "江津市都野津町2279-23" }
     ]
   },
   orange: {
@@ -610,11 +601,10 @@ const data = {
     tag: "放課後の居場所",
     desc: "放課後の時間を安心して過ごせる場所。利用条件がある場合がありますのでお問い合わせください。",
     places: [
-      { name: "放課後等デイサービス", detail: "利用条件あり・要相談" },
-      { name: "放課後 居場所クラブ", detail: "小学生対象・無料" },
-      { name: "REBORN なないろ・そらいろ", detail: "掲載内容確認中" },
-      { name: "ディサービス バンビーノ", detail: "掲載内容確認中" },
-      { name: "ディサービス 彩心（いろは）", detail: "掲載内容確認中" }
+      { name: "REBORN なないろ・そらいろ", detail: "江津市嘉久志町1939-1" },
+      { name: "放課後等ディサービス バンビーノ", detail: "江津市江津町561" },
+      { name: "ディサービス 彩心（いろは）", detail: "江津市嘉久志町2309-3" },
+      { name: "おっちゃんち", detail: "江津市都野津町2279-23" }
     ]
   },
   sora: {
@@ -623,9 +613,7 @@ const data = {
     tag: "学校・専門支援",
     desc: "特別な支援が受けられる学校や、専門的なコースがある場所です。見学・相談も随時受け付けています。",
     places: [
-      { name: "智翠館高校 アスライズコース", detail: "入学相談随時" },
-      { name: "江津清和養護学校", detail: "見学・相談受付中" },
-      { name: "石見智翠館高等学校", detail: "掲載内容確認中" }
+      { name: "石見智翠館高等学校", detail: "江津市江津町1615-1" }
     ]
   }
 };
