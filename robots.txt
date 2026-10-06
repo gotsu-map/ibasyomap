@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://gotsu-map.github.io/ibasyomap/sitemap.xml
